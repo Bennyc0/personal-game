@@ -92,11 +92,11 @@ dev_weapons = ["Doombringer"]
 # ----------Weapons/Abilties----------
 # Note: Format:
 # (weapon name)_weapon = Weapon("(Weapon Name)",
-#     (weapon name)_(ability type) := Player_Ability("(ability_type)", "(Weapon Name)", (min_damage), (max_damage), (accuracy)),
-#     (weapon name)_(ability type) := Player_Ability("(ability_type)", "(Weapon Name)", (min_damage), (max_damage), (accuracy)),
-#     (weapon name)_(ability type) := Player_Ability("(ability_type)", "(Weapon Name)", (min_damage), (max_damage), (accuracy)),
-#     (weapon name)_(ability type) := Player_Ability("(ability_type)", "(Weapon Name)", (min_damage), (max_damage), (accuracy)),
-#     (weapon name)_(ability type) := Player_Ability("(ability_type)", "(Weapon Name)", (min_damage), (max_damage), (accuracy))
+#     (weapon name)_defensive := Player_Ability("defensive", "(Weapon Name)", (min_damage), (max_damage), (accuracy)),
+#     (weapon name)_basic1 := Player_Ability("basic1", "(Weapon Name)", (min_damage), (max_damage), (accuracy)),
+#     (weapon name)_basic2 := Player_Ability("basic2", "(Weapon Name)", (min_damage), (max_damage), (accuracy)),
+#     (weapon name)_special := Player_Ability("special", "(Weapon Name)", (min_damage), (max_damage), (accuracy)),
+#     (weapon name)_ultimate := Player_Ability("ultimate", "(Weapon Name)", (min_damage), (max_damage), (accuracy))
 
 # Note: first ability: defensive abilities
 # Note: second ability: basic1 attack abilities
@@ -110,122 +110,146 @@ dev_weapons = ["Doombringer"]
 # Note: ultimates are available only after rounds count is greater than 5, can only be used once per battle
 
 weapons_dict = {
-# ---<Test Weapon>---
-    test_weapon_weapon = Weapon("Test Weapon",
+    # ---Test Weapon---
+        # Note: test_weapon is for testing purposes
+
+        test_weapon_weapon := Weapon("Test Weapon",
         idk1 := Player_Ability("nothing", "idk1", 1, 2, 100),
         idk2 := Player_Ability("nothing", "idk2", 1, 2, 90),
         idk3 := Player_Ability("nothing", "idk3", 1, 2, 80),
         idk4 := Player_Ability("nothing", "idk4", 1, 2, 70),
-        idk5 := Player_Ability("nothing", "idk5", 1, 2, 60))
-# Note: test_weapon is for testing purposes
+        idk5 := Player_Ability("nothing", "idk5", 1, 2, 60)),
 
-# ---<Martial Arts>---
-    martial_arts_weapon = Weapon("Martial Arts",
-        martial_arts_defense := Player_Ability("defense", "Block", 0, 0, 100),
-        martial_arts_basic1 := Player_Ability("basic1", "Punch", 2, 5, 100),
-        martial_arts_basic2 := Player_Ability("basic2", "Upper Punch", 5, 8, 95),
-        martial_arts_special := Player_Ability("special", "Roundhouse Kick", 8, 12, 80),
-        martial_arts_ultimate := Player_Ability("ultimate", "Flurry Strike", 17, 17, 100))
-# Note: martial_arts_defense will only negate 85% of the damage(rounded)
+    # ---Martial Arts---
+        # Note: martial_arts_defense will only negate 85% of the damage(rounded)
 
-# ---<Rusty Sword>---
-    rusty_sword_weapon = Weapon("Rusty Sword",
-        rusty_sword_defense := Player_Ability("defense", "Counter", 0, 0, 100),
-        rusty_sword_basic1 := Player_Ability("basic1", "Rusty Slice", 4, 7, 100),
-        rusty_sword_basic2 := Player_Ability("basic2", "Upper Slash", 7, 12, 90),
-        rusty_sword_special := Player_Ability("special", "Cross Slash", 10, 15, 80),
-        rusty_sword_ultimate := Player_Ability("ultimate", "Rust Reaction", 20, 20, 100))
-# Note: rusty_sword_defense will do 50% of the enemy damage to enemy(rounded)
+        martial_arts_weapon := Weapon("Martial Arts",
+            martial_arts_defense := Player_Ability("defense", "Block", 0, 0, 100),
+            martial_arts_basic1 := Player_Ability("basic1", "Punch", 2, 5, 100),
+            martial_arts_basic2 := Player_Ability("basic2", "Upper Punch", 5, 8, 95),
+            martial_arts_special := Player_Ability("special", "Roundhouse Kick", 8, 12, 80),
+            martial_arts_ultimate := Player_Ability("ultimate", "Flurry Strike", 17, 17, 100)),
 
-# ---<Dual Daggers>---
-    dual_daggers_weapon = Weapon("Dual Daggers",
-        dual_daggers_defense := Player_Ability("defense", "Deflect", 0, 0, 100),
-        dual_daggers_basic1 := Player_Ability("basic1", "Dagger Stab", 8, 10, 100),
-        dual_daggers_basic2 := Player_Ability("basic2", "Double Slash", 10, 14, 90),
-        dual_daggers_special := Player_Ability("special", "Dagger Throw", 15, 18, 95),
-        dual_daggers_ultimate := Player_Ability("ultimate", "Deadly Assault", 30, 30, 100))
-# Note: dual_daggers_defense will return 30% of the damage back to enemy(rounded)
-# Note: dual_daggers_special will make player lose "dual daggers" weapon
+    # ---Rusty Sword---
+        # Note: rusty_sword_defense will do 50% of the enemy damage to enemy(rounded)
 
-# ---<Katana>---
-    katana_weapon = Weapon("Katana",
-        katana_defense := Player_Ability("defense", "Parry", 0, 0, 100),
-        katana_basic1 := Player_Ability("basic2", "Slash", 10, 14, 100),
-        katana_basic2 := Player_Ability("basic2", "Horizontal Arc", 15, 20, 90),
-        katana_special := Player_Ability("special", "Fury Cutter", 21, 24, 80),
-        katana_ultimate := Player_Ability("ultimate", "Phantom Claws", 45, 45, 100))
-# Note: katana_defense will return 20% of the damage back to enemy(rounded), allows player to choose a 40% weaker version of another move(rounded)
+        rusty_sword_weapon := Weapon("Rusty Sword",
+            rusty_sword_defense := Player_Ability("defense", "Counter", 0, 0, 100),
+            rusty_sword_basic1 := Player_Ability("basic1", "Rusty Slice", 4, 7, 100),
+            rusty_sword_basic2 := Player_Ability("basic2", "Upper Slash", 7, 12, 90),
+            rusty_sword_special := Player_Ability("special", "Cross Slash", 10, 15, 80),
+            rusty_sword_ultimate := Player_Ability("ultimate", "Rust Reaction", 20, 20, 100)),
 
-# ---<Greatsword>---
-    greatsword_weapon = Weapon("Greatsword",
-        greatsword_defense := Player_Ability("defense", "Deflect", 0, 0, 100),
-        greatsword_basic1 := Player_Ability("basic1", "Great Slash", 16, 19, 95),
-        greatsword_basic2 := Player_Ability("basic2", "Horizontal Cutter", 18, 26, 85),
-        greatsword_special := Player_Ability("special", "Whirlwind", 30, 35, 90),
-        greatsword_ultimate := Player_Ability("ultimate", "Splitting Earth", 60, 60, 100))
-# Note: greatsword_defense will return 30% of the damage back to enemy(rounded)
-# Note: greatsword_special will have cd of 1 rounds to prevent abuse
+    # ---Dual Daggers---
+        # Note: dual_daggers_defense will return 30% of the damage back to enemy(rounded)
+        # Note: dual_daggers_special will make player lose "dual daggers" weapon
 
-# ---<Dragon Slayer>---
-    dragon_slayer_weapon = Weapon("Dragon Slayer",
-        dragon_slayer_defense := Player_Ability("defense", "Counter", 0, 0, 100),
-        dragon_slayer_basic1 := Player_Ability("basic1", "Dragon Bite", 27, 35, 100),
-        dragon_slayer_basic2 := Player_Ability("basic2", "Fire Breath", 35, 45, 95),
-        dragon_slayer_special := Player_Ability("special", "Dragon's Rage", 90, 100, 70),
-        dragon_slayer_ultimate := Player_Ability("ultimate", "Dragons Assemble!", 150, 150, 100))
-# Note: dragon_slayer_defense will do 50% of the enemy damage to enemy
+        dual_daggers_weapon := Weapon("Dual Daggers",
+            dual_daggers_defense := Player_Ability("defense", "Deflect", 0, 0, 100),
+            dual_daggers_basic1 := Player_Ability("basic1", "Dagger Stab", 8, 10, 100),
+            dual_daggers_basic2 := Player_Ability("basic2", "Double Slash", 10, 14, 90),
+            dual_daggers_special := Player_Ability("special", "Dagger Throw", 15, 18, 95),
+            dual_daggers_ultimate := Player_Ability("ultimate", "Deadly Assault", 30, 30, 100)),
 
-# ---<Reaper's Blade>---
-    reapers_blade_weapon = Weapon("Reaper's Blade",
-        reapers_blade_defense := Player_Ability("defense", "Absolute Defense", 0, 0, 100),
-        reapers_blade_basic1 := Player_Ability("basic1", "Silent Moon", 10000, 10000, 100),
-        reapers_blade_basic2 := Player_Ability("basic2", "Deadly Cresent", 10000, 10000, 100),
-        reapers_blade_special := Player_Ability("special", "Gate of Death", 10000, 10000, 100),
-        reapers_blade_ultimate := Player_Ability("ultimate", "The Void", 999999, 999999, 100))
-# Note: Dev-Only weapon, for testing purposes, and meant to destroy everything
-# Note: reaper_blade_defense will negate all damage
+    # ---Katana---
+        # Note: katana_defense will return 20% of the damage back to enemy(rounded), allows player to choose a 40% weaker version of another move(rounded)
+
+        katana_weapon := Weapon("Katana",
+            katana_defense := Player_Ability("defense", "Parry", 0, 0, 100),
+            katana_basic1 := Player_Ability("basic2", "Slash", 10, 14, 100),
+            katana_basic2 := Player_Ability("basic2", "Horizontal Arc", 15, 20, 90),
+            katana_special := Player_Ability("special", "Fury Cutter", 21, 24, 80),
+            katana_ultimate := Player_Ability("ultimate", "Phantom Claws", 45, 45, 100)),
+
+    # ---Greatsword---
+        # Note: greatsword_defense will return 30% of the damage back to enemy(rounded)
+        # Note: greatsword_special will have cd of 1 rounds to prevent abuse
+
+        greatsword_weapon := Weapon("Greatsword",
+            greatsword_defense := Player_Ability("defense", "Deflect", 0, 0, 100),
+            greatsword_basic1 := Player_Ability("basic1", "Great Slash", 16, 19, 95),
+            greatsword_basic2 := Player_Ability("basic2", "Horizontal Cutter", 18, 26, 85),
+            greatsword_special := Player_Ability("special", "Whirlwind", 30, 35, 90),
+            greatsword_ultimate := Player_Ability("ultimate", "Splitting Earth", 60, 60, 100)),
+
+    # ---Dragon Slayer---
+        # Note: dragon_slayer_defense will do 50% of the enemy damage to enemy
+
+        dragon_slayer_weapon := Weapon("Dragon Slayer",
+            dragon_slayer_defense := Player_Ability("defense", "Counter", 0, 0, 100),
+            dragon_slayer_basic1 := Player_Ability("basic1", "Dragon Bite", 27, 35, 100),
+            dragon_slayer_basic2 := Player_Ability("basic2", "Fire Breath", 35, 45, 95),
+            dragon_slayer_special := Player_Ability("special", "Dragon's Rage", 90, 100, 70),
+            dragon_slayer_ultimate := Player_Ability("ultimate", "Dragons Assemble!", 150, 150, 100)),
+
+    # ---Reaper's Blade---
+        # Note: Dev-Only weapon, for testing purposes, and meant to destroy everything
+        # Note: reaper_blade_defense will negate all damage
+
+        reapers_blade_weapon := Weapon("Reaper's Blade",
+            reapers_blade_defense := Player_Ability("defense", "Absolute Defense", 0, 0, 100),
+            reapers_blade_basic1 := Player_Ability("basic1", "Silent Moon", 10000, 10000, 100),
+            reapers_blade_basic2 := Player_Ability("basic2", "Deadly Cresent", 10000, 10000, 100),
+            reapers_blade_special := Player_Ability("special", "Gate of Death", 10000, 10000, 100),
+            reapers_blade_ultimate := Player_Ability("ultimate", "The Void", 999999, 999999, 100))
 }
 
-
 # ----------Game Areas----------
-# (name, npcs, enemies, items, west, south, east, north)
+# (sector, name, description, npcs, enemies, items, west, south, east, north)
 
+# Note: Npcs, enemies, and items are being worked on.
+# Note: Game Map(For Devs Only): Link: https://coggle.it/diagram/YugmkGqIBdEcJLii/t/personal-game-map
 areas_dict = {
-# ---<Starting City>---
-    starting_city_city_square := Game_Area("starting_city", "City Square", "The center of Starting City.", [], [], "___", "West Gate", "South Gate", "East Gate", "North Gate"),
-    starting_city_west_gate := Game_Area("starting_city", "West Gate", "The western gate of Starting City.", [], [], "___", "None", "Knight Quarters", "City Square", "None"),
-    starting_city_south_gate := Game_Area("starting_city", "South Gate", "The southern gate of Starting CIty.", [], [], "___", "City Teleporter", "None", "None", "City Square"),
-    starting_city_east_gate := Game_Area("starting_city", "East Gate", "The eastern gate of Starting City.", [], [], "___", "City Square", "City Smithy", "None", "None"),
-    starting_city_north_gate := Game_Area("starting_city", "North Gate", "The northern gate of Starting City.", [], [], "___", "None", "City Square", "Town Hall", "None"),
-    starting_city_town_hall := Game_Area("starting_city", "Town Hall", "", [], [], "___", "North Gate", "None", "None", "None"),
-    starting_city_knight_quarters := Game_Area("starting_city", "Knight Quarters", "", [], [], "___", "None", "None", "None", "West Gate"),
-    starting_city_city_smithy := Game_Area("starting_city", "City Smithy", "", [], [], "___", "None", "None", "None", "East Gate"),
-    starting_city_city_teleporter := Game_Area("starting_city", "City Teleporter", "", [], [], "___", "None", "None", "South Gate", "None"),
+    # ---Starting City---
+        starting_city_city_square := Game_Area("starting_city", "City Square", "The center of Starting City.", [], [], "___", "West Gate", "South Gate", "East Gate", "North Gate"),
+        starting_city_west_gate := Game_Area("starting_city", "West Gate", "The western gate of Starting City.", [], [], "___", "None", "Knight Quarters", "City Square", "City Bank"),
+        starting_city_south_gate := Game_Area("starting_city", "South Gate", "The southern gate of Starting CIty.", [], [], "___", "Starting City Teleporter", "None", "None", "City Square"),
+        starting_city_east_gate := Game_Area("starting_city", "East Gate", "The eastern gate of Starting City.", [], [], "___", "City Square", "City Smithy", "None", "None"),
+        starting_city_north_gate := Game_Area("starting_city", "North Gate", "The northern gate of Starting City.", [], [], "___", "None", "City Square", "Town Hall", "None"),
+        starting_city_town_hall := Game_Area("starting_city", "Town Hall", "", [], [], "___", "North Gate", "None", "None", "None"),
+        starting_city_knight_quarters := Game_Area("starting_city", "Knight Quarters", "", [], [], "___", "None", "None", "None", "West Gate"),
+        starting_city_city_smithy := Game_Area("starting_city", "City Smithy", "", [], [], "___", "None", "None", "None", "East Gate"),
+        starting_city_teleporter := Game_Area("starting_city", "Starting City Teleporter", "", [], [], "___", "None", "None", "South Gate", "None"),
+        starting_city_city_bank := Game_Area("starting_city", "City Bank", "", [], [], "___", "None", "West Gate", "None", "None"),
 
-# ---<Scorching Desert>---
-    scorching_desert_barren_lands := Game_Area("scorching_desert", "Barren Lands", "", [], [], "___", "", "", "", ""),
-    scorching_desert_scorching_desert1 := Game_Area("scorching_desert", "Scorching Desert-1", "", [], [], "___", "", "", "", ""),
-    scorching_desert_scorching_desert2 := Game_Area("scorching_desert", "Scorching Desert-2", "", [], [], "___", "", "", "", ""),
-    scorching_desert_scorching_desert3 := Game_Area("scorching_desert", "Scorching Desert-3", "", [], [], "___", "", "", "", ""),
-    scorching_desert_desert_oasis := Game_Area("scorching_desert", "Desert Oasis", "", [], [], "___", "", "", "", ""),
-    scorching_desert_oasis_lakeside := Game_Area("scorching_desert", "Oasis Lakeside", "", [], [], "___", "", "", "", ""),
-    scorching_desert_crimson_canyon := Game_Area("scorching_desert", "Crimson Canyon", "", [], [], "___", "", "", "", ""),
-    scorching_desert_hidden_cave := Game_Area("scorching_desert", "Hidden Cave", "", [], [], "___", "", "", "", ""),
+    # ---Scorching Desert---
+        scorching_desert_barren_lands := Game_Area("scorching_desert", "Barren Lands", "", [], [], "___", "None", "Scorching Desert-1", "None", "South Gate"),
+        scorching_desert_scorching_desert1 := Game_Area("scorching_desert", "Scorching Desert-1", "", [], [], "___", "Desert Oasis", "Scorching Desert-2", "Crimson Canyon", "Barren Lands"),
+        scorching_desert_scorching_desert2 := Game_Area("scorching_desert", "Scorching Desert-2", "", [], [], "___", "Temple Entrance", "None", "None", "Scorching Desert-1"),
+        scorching_desert_desert_oasis := Game_Area("scorching_desert", "Desert Oasis", "", [], [], "___", "None", "None", "Scorching Desert-1", "Oasis Lakeside"),
+        scorching_desert_oasis_lakeside := Game_Area("scorching_desert", "Oasis Lakeside", "", [], [], "___", "None", "Desert Oasis", "None", "None"),
+        scorching_desert_crimson_canyon := Game_Area("scorching_desert", "Crimson Canyon", "", [], [], "___", "Scorching Desert-1", "None", "Northern Road", "None"),
+        scorching_desert_hidden_cave := Game_Area("scorching_desert", "Hidden Cave", "", [], [], "___", "None", "None", "None", "Crimson Canyon"),    
+        # Note: scorching_desert_hidden_cave will not show on scorching_desert_crimson_canyon's paths, its hidden
 
-# ---<Desert Temple (Dungeon)>---
-    desert_temple_temple_entrance := Game_Area("desert_temple", "Temple Entrance", "", [], [], "___", "", "", "", ""),
-    desert_temple_temple_hallways1 := Game_Area("desert_temple", "Temple Hallways-1", "", [], [], "___", "", "", "", ""),
-    desert_temple_temple_storeroom1 := Game_Area("desert_temple", "Temple Storeroom-1", "", [], [], "___", "", "", "", ""),
-    desert_temple_temple_stairs := Game_Area("desert_temple", "Temple Stairs", "", [], [], "___", "", "", "", ""),
-    desert_temple_temple_hallways2 := Game_Area("desert_temple", "Temple Hallways-2", "", [], [], "___", "", "", "", ""),
-    desert_temple_temple_storeroom2 := Game_Area("desert_temple", "Temple Storeroom-2", "", [], [], "___", "", "", "", ""),
-    desert_temple_heavy_doors := Game_Area("desert_temple", "Heavy Doors", "", [], [], "___", "", "", "", ""),
-    desert_temple_temple_hallways3 := Game_Area("desert_temple", "Temple Hallways-3", "", [], [], "___", "", "", "", ""),
-    desert_temple_grand_chamber := Game_Area("desert_temple", "Grand Chamber", "", [], [], "___", "", "", "", ""),
-    desert_temple_treasure_room := Game_Area("desert_temple", "Treasure Room", "", [], [], "___", "", "", "", ""),
-    desert_temple_exit_teleporter := Game_Area("desert_temple", "Exit Teleporter", "", [], [], "___", "", "", "", ""),
+    # ---Desert Temple (Dungeon)---
+        desert_temple_temple_entrance := Game_Area("desert_temple", "Temple Entrance", "", [], [], "___", "", "", "", ""),
+        desert_temple_temple_hallways1 := Game_Area("desert_temple", "Temple Hallways-1", "", [], [], "___", "", "", "", ""),
+        desert_temple_temple_storeroom1 := Game_Area("desert_temple", "Temple Storeroom-1", "", [], [], "___", "", "", "", ""),
+        desert_temple_temple_stairs := Game_Area("desert_temple", "Temple Stairs", "", [], [], "___", "", "", "", ""),
+        desert_temple_temple_hallways2 := Game_Area("desert_temple", "Temple Hallways-2", "", [], [], "___", "", "", "", ""),
+        desert_temple_temple_storeroom2 := Game_Area("desert_temple", "Temple Storeroom-2", "", [], [], "___", "", "", "", ""),
+        desert_temple_heavy_doors := Game_Area("desert_temple", "Heavy Doors", "", [], [], "___", "", "", "", ""),
+        desert_temple_temple_hallways3 := Game_Area("desert_temple", "Temple Hallways-3", "", [], [], "___", "", "", "", ""),
+        desert_temple_grand_chamber := Game_Area("desert_temple", "Grand Chamber", "", [], [], "___", "", "", "", ""),
+        desert_temple_treasure_room := Game_Area("desert_temple", "Treasure Room", "", [], [], "___", "", "", "", ""),
+        desert_temple_exit_teleporter := Game_Area("desert_temple", "Exit Teleporter", "", [], [], "___", "", "", "", ""),
 
-} 
+    # ---Desert Town---
+        desert_town_town_square := Game_Area("desert_town", "Town Square", "", [], [], "___", "Western Road", "Southern Road", "Eastern Road", "Northern Road"),
+        desert_town_western_road := Game_Area("desert_town", "Western Road", "", [], [], "___", "None", "Town Smithy", "Town Square", "Town Stores"),
+        desert_town_southern_road := Game_Area("desert_town", "Southern Road", "", [], [], "___", "Town Warehouse", "WIP", "Desert Town Teleporter", "Town Square"),
+        desert_town_eastern_road := Game_Area("desert_town", "Eastern Road", "", [], [], "___", "Town Square", "None", "WIP", "Town Bank"),
+        desert_town_northern_road := Game_Area("desert_town", "Northern Road", "", [], [], "___", "Crimson Canyon", "Town Square", "None", "None"),
+        desert_town_town_stores := Game_Area("desert_town", "Town Stores", "", [], [], "___", "None", "Western Road", "None", "None"),
+        desert_town_town_smithy := Game_Area("desert_town", "Town Smithy", "", [], [], "___", "None", "None", "None", "Western Road"),
+        desert_town_teleporter := Game_Area("desert_town", "Desert Town Teleporter", "", [], [], "___", "Southern Road", "None", "None", "None"),
+        desert_town_town_warehouse := Game_Area("desert_town", "Town Warehouse", "", [], [], "___", "None", "None", "Southern Road", "None"),
+        desert_town_town_bank := Game_Area("desert_town", "Town Bank", "", [], [], "___", "None", "Eastern Road", "None", "None"),
+
+    # ---Redwood Forest---
+    #:= Game_Area("scorching_desert", "Crimson Canyon", "", [], [], "___", "", "", "", ""),
+}
 
 # -------------------------Test Game-------------------------
 def game_start():
@@ -235,8 +259,17 @@ def game_start():
 
     current_area = starting_city_city_square
 
-    player_name = input("Hello player! What is your name?>> " + "\n")
+    while active:
+        player_name = input("Hello player! What is your name?>> ")
+        print("")
 
+        confirm = input(f"Your name is: '{player_name}'. Is that correct?(Yes or No): ").lower()
+        print("")
+
+        if confirm == "yes":
+            active = False
+
+            print(f"---Welcome! {player_name} your journey starts now!--- \n")
 
 
 
@@ -244,15 +277,18 @@ def prompt_player():
     active = True
 
     while active:
-        player_input = input("What do you want to do?>> " + "\n").lower()
-        print("---<Processing...>--- \n")
+        player_input = input("What do you want to do?>> ").lower()
+        print("")
+        print("---Processing...--- \n")
         sleep(delay)
 
         if player_input.strip():
             active = False
+
+            player_input = player_input.split(" ")
             return player_input
         else:
-            print("---<Input Cannot Be Blank>--- \n")
+            print("---Input Cannot Be Blank--- \n")
         
 
 
@@ -260,20 +296,52 @@ def player_command(player_input):
     global current_area
     global last_interaction
 
-    #if "go" in player_input:
+    teleport_options = []
 
+    # ---"Go"---
+    if "go" in player_input:
+        if "south" in player_input and current_area == scorching_desert_crimson_canyon:
+            current_area = scorching_desert_hidden_cave
 
-    if "look" in player_input:
+    # ---"Look"---
+    elif "look" in player_input:
         print(current_area)
 
         if "teleporter" in current_area.name.lower():
-            print("---<'interact' With the Teleporter to Use It>--- \n")
+            print("---'interact' With the Teleporter to Use It--- \n")
+        
+        if current_area == scorching_desert_crimson_canyon:
+            print("There seems to be a cave behind the plants to your south.")
 
-    #elif "interact" in player_input:
+    # ---"Interact"---
+    elif "interact" in player_input:
 
+        # ---Teleporting System---
+        if "teleporter" in player_input and "teleporter" in current_area.name.lower():
+            if "exit" not in current_area.name.lower():
+                for options in areas_dict:
+                    if "teleporter" in options.name.lower() and "exit" not in options.name.lower():
+                        teleport_options.append(options.name)
 
+                activate_teleport = input(f"Teleport Options: {teleport_options} \nWhere would you like to teleport to?>> ").lower()
+                print("")
+
+                if activate_teleport == current_area.name.lower():
+                    print("---You Are Already Here!---\n")
+                else:
+                    for option in areas_dict:
+                        if activate_teleport == option.name.lower():
+                            current_area = option
+
+            elif "exit" in current_area.name.lower():
+                for entrance in areas_dict:
+                    if "entrance" in entrance.name.lower() and entrance.sector == current_area.sector:
+                        current_area = entrance
+
+    # ---"Mystats"---
     elif "mystats" in player_input:
         print(player_character)
 
+    # ---"Help"---
     elif "help" in player_input:
         print(game_cmds)
